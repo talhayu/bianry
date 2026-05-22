@@ -1,0 +1,46 @@
+name: Build Agent
+
+on: [push]
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - run: pip install pyinstaller pyngrok requests
+      - run: pyinstaller --onefile agent.py
+      - uses: actions/upload-artifact@v3
+        with:
+          name: agent-windows
+          path: dist/agent.exe
+
+  build-mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - run: pip install pyinstaller pyngrok requests
+      - run: pyinstaller --onefile agent.py
+      - uses: actions/upload-artifact@v3
+        with:
+          name: agent-mac
+          path: dist/agent
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - run: pip install pyinstaller pyngrok requests
+      - run: pyinstaller --onefile agent.py
+      - uses: actions/upload-artifact@v3
+        with:
+          name: agent-linux
+          path: dist/agent
