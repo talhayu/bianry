@@ -6,13 +6,22 @@ jobs:
   build-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install pyinstaller pyngrok requests
-      - run: pyinstaller --onefile agent.py
-      - uses: actions/upload-artifact@v3
+
+      - name: Install dependencies
+        run: pip install pyinstaller pyngrok requests
+
+      - name: Build Windows executable
+        run: pyinstaller --onefile agent.py
+
+      - name: Upload Windows executable
+        uses: actions/upload-artifact@v4
         with:
           name: agent-windows
           path: dist/agent.exe
@@ -20,13 +29,22 @@ jobs:
   build-mac:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install pyinstaller pyngrok requests
-      - run: pyinstaller --onefile agent.py
-      - uses: actions/upload-artifact@v3
+
+      - name: Install dependencies
+        run: pip install pyinstaller pyngrok requests
+
+      - name: Build macOS executable
+        run: pyinstaller --onefile agent.py
+
+      - name: Upload macOS executable
+        uses: actions/upload-artifact@v4
         with:
           name: agent-mac
           path: dist/agent
@@ -34,13 +52,22 @@ jobs:
   build-linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install pyinstaller pyngrok requests
-      - run: pyinstaller --onefile agent.py
-      - uses: actions/upload-artifact@v3
+
+      - name: Install dependencies
+        run: pip install pyinstaller pyngrok requests
+
+      - name: Build Linux executable
+        run: pyinstaller --onefile agent.py
+
+      - name: Upload Linux executable
+        uses: actions/upload-artifact@v4
         with:
           name: agent-linux
           path: dist/agent
