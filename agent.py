@@ -10,7 +10,7 @@ conf.get_default().auth_token = '2jdJDapQWBBC4C5KT9xG6HIoVKg_NCCB2jh49izGVFnteLT
 # ──────────────────────────────────────────────
 # Config — change SERVER_URL when deploying
 # ──────────────────────────────────────────────
-SERVER_URL = "http://localhost:8000"
+SERVER_URL = "https://5ade-103-117-160-9.ngrok-free.app"
 USER_ID = "test-user-123"  # hardcoded for testing
 
 
